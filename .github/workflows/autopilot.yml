@@ -24,8 +24,9 @@ jobs:
       
       - name: Write Article
         run: python content_writer.py
-        env:
-          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+                env:
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+
       
       - name: Commit and Push
         run: |

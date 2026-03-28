@@ -1,0 +1,44 @@
+name: AI Business Engine
+on:
+  schedule:
+    # Runs every day at 9:00 AM UTC (means different times depending on your timezone)
+    - cron: '0 9 * * *'
+  workflow_dispatch:  # This lets you push a button to run it manually
+
+jobs:
+  make-money:
+    runs-on: ubuntu-latest
+    steps:
+      # Step 1: Checkout the code
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      # Step 2: Set up Python
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+      
+      # Step 3: Install the AI library (free)
+      - name: Install dependencies
+        run: pip install google-generativeai feedparser
+      
+      # Step 4: Run the Trend Scout (finds opportunities)
+      - name: Find Trends
+        run: python trend_scout.py
+      
+      # Step 5: Run the Content Writer (creates articles)
+      - name: Write Article
+        run: python content_writer.py
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+      
+      # Step 6: Commit the new article to your website
+      - name: Commit and Push
+        run: |
+          git config --global user.name "AI Business Bot"
+          git config --global user.email "bot@example.com"
+          git add .
+          git commit -m "🤖 Daily automated content: $(date)" || echo "No changes"
+          git push
+          

@@ -1,0 +1,11 @@
+title: StackWise Reviews
+description: >- 
+  AI-powered software reviews. We test tools so you don't have to.
+baseurl: "" 
+url: "https://github.com/stackwisereviews-ai"  # CHANGE THIS LINE - see below
+theme: minima  # Free GitHub theme
+
+# IMPORTANT INSTRUCTION:
+# Replace "stackwise-ai" in the url line above with your actual GitHub username
+# Example: if your username is "john-smith", write:
+# url: "https://john-smith.github.io"

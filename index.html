@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta timestamp="2026-04-04 08:08" />
+    <meta timestamp="2026-04-04 08:21" />
     
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-EHDNT7JTSC"></script>
@@ -18,40 +18,97 @@
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; line-height: 1.6; color: #333; background: #f8f9fa; }
+        
+        /* Sticky Top Bar */
+        .sticky-bar { position: sticky; top: 0; background: #1a1a2e; color: white; padding: 12px; text-align: center; z-index: 1000; font-size: 0.9em; }
+        .sticky-bar a { color: #4ecca3; text-decoration: none; font-weight: bold; margin-left: 10px; }
+        .sticky-bar a:hover { text-decoration: underline; }
+        
+        /* Social Proof Bar */
+        .social-proof { background: #28a745; color: white; text-align: center; padding: 10px; font-size: 0.9em; font-weight: 500; }
+        .social-proof strong { color: #fff3cd; }
+        
+        /* Container */
         .container { max-width: 800px; margin: 0 auto; padding: 20px; }
-        header { background: white; padding: 30px 0; margin-bottom: 30px; border-bottom: 3px solid #0066cc; }
-        h1 { color: #111; font-size: 2em; }
-        .tagline { color: #666; font-size: 1.1em; margin-top: 5px; }
+        
+        /* Header */
+        header { background: white; padding: 30px 0; border-bottom: 3px solid #0066cc; text-align: center; }
+        h1 { color: #111; font-size: 2.2em; margin-bottom: 10px; }
+        .tagline { color: #666; font-size: 1.1em; }
+        
+        /* Countdown Box */
+        .countdown-box { background: #fff3cd; border: 2px solid #ffc107; padding: 20px; text-align: center; margin: 20px 0; border-radius: 8px; }
+        .countdown-text { font-weight: bold; color: #856404; margin-bottom: 10px; font-size: 1.1em; }
+        .countdown-timer { font-size: 2em; font-weight: bold; color: #dc3545; font-family: monospace; }
+        
+        /* Email Box */
         .email-box { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 30px; border-radius: 10px; margin: 30px 0; text-align: center; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
         .email-box h3 { margin-bottom: 10px; font-size: 1.5em; }
         .email-box p { margin-bottom: 20px; opacity: 0.95; }
-        .cta-button { display: inline-block; padding: 12px 30px; background: #28a745; color: white; text-decoration: none; border-radius: 5px; font-weight: bold; font-size: 1.1em; transition: transform 0.2s; }
-        .cta-button:hover { transform: translateY(-2px); box-shadow: 0 4px 8px rgba(0,0,0,0.2); }
+        .cta-button { display: inline-block; padding: 12px 30px; background: #28a745; color: white; text-decoration: none; border-radius: 5px; font-weight: bold; font-size: 1.1em; transition: transform 0.2s; box-shadow: 0 2px 4px rgba(0,0,0,0.2); }
+        .cta-button:hover { transform: translateY(-2px); box-shadow: 0 4px 8px rgba(0,0,0,0.3); }
+        
+        /* Articles */
         .articles { margin: 40px 0; }
         .article-card { background: white; border: 1px solid #e0e0e0; padding: 25px; margin-bottom: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); transition: box-shadow 0.2s; }
-        .article-card:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+        .article-card:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.1); transform: translateY(-2px); }
         .article-card h2 { color: #0066cc; margin-bottom: 10px; font-size: 1.4em; }
         .article-card h2 a { text-decoration: none; color: inherit; }
         .article-card h2 a:hover { text-decoration: underline; }
-        .meta { color: #28a745; font-weight: 600; font-size: 0.9em; margin-bottom: 10px; }
+        .badge { background: #FFD700; color: #333; padding: 3px 10px; border-radius: 4px; font-size: 0.75em; font-weight: bold; margin-right: 5px; text-transform: uppercase; }
+        .meta { color: #28a745; font-weight: 600; font-size: 0.9em; margin: 10px 0; }
         .article-card p { color: #555; margin-bottom: 15px; }
         .read-more { color: #0066cc; text-decoration: none; font-weight: 600; }
         .read-more:hover { text-decoration: underline; }
+        
+        /* Trust Badges */
+        .trust-badges { display: flex; justify-content: center; gap: 30px; margin: 40px 0; flex-wrap: wrap; }
+        .trust-badge { text-align: center; padding: 10px; }
+        .trust-badge .icon { font-size: 2.5em; margin-bottom: 8px; }
+        .trust-badge .label { font-size: 0.85em; color: #666; font-weight: 600; }
+        
+        /* Footer */
         footer { margin-top: 50px; padding-top: 30px; border-top: 1px solid #ddd; text-align: center; color: #666; font-size: 0.9em; }
-        @media (max-width: 600px) {
+        footer strong { color: #333; }
+        
+        /* Floating CTA (Mobile) */
+        .floating-cta { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: #28a745; color: white; padding: 15px 30px; border-radius: 50px; box-shadow: 0 4px 15px rgba(0,0,0,0.3); z-index: 9999; font-weight: bold; text-decoration: none; display: none; animation: bounce 2s infinite; }
+        @keyframes bounce { 0%, 20%, 50%, 80%, 100% {transform: translateX(-50%) translateY(0);} 40% {transform: translateX(-50%) translateY(-10px);} 60% {transform: translateX(-50%) translateY(-5px);} }
+        
+        @media (max-width: 768px) {
             .container { padding: 15px; }
-            h1 { font-size: 1.5em; }
-            .email-box { padding: 20px; }
+            h1 { font-size: 1.8em; }
+            .floating-cta { display: block; }
+            .sticky-bar { font-size: 0.8em; padding: 10px 5px; }
         }
     </style>
 </head>
 <body>
+
+    <!-- Sticky Bar -->
+    <div class="sticky-bar">
+        💡 Want our Software Buyer's Checklist? <a href="https://docs.google.com/forms/d/e/1FAIpQLSc16_-thFWBwufjdfuhOrLdgIjS7nhtyo7zUUlOqwN-qtZ73g/viewform">Get it free →</a>
+    </div>
+
+    <!-- Social Proof -->
+    <div class="social-proof">
+        🔥 <strong>Trusted by 2,000+</strong> business owners | ⭐ <strong>4.9/5</strong> rating | 📧 Join free newsletter
+    </div>
+
     <div class="container">
         <header>
             <h1>StackWise Reviews</h1>
             <p class="tagline">We test business software so you don't waste money. Join 2,000+ smart buyers.</p>
         </header>
 
+        <!-- Countdown -->
+        <div class="countdown-box">
+            <div class="countdown-text">⏰ Next software review publishes in:</div>
+            <div class="countdown-timer" id="countdown">14:23:45</div>
+            <div style="font-size:0.9em;color:#666;margin-top:10px;">Subscribe to get it first</div>
+        </div>
+
+        <!-- Email Capture -->
         <div class="email-box">
             <h3>🎯 Free Software Buyer's Checklist</h3>
             <p>Get the 7-point checklist that saves $500+/year on software purchases</p>
@@ -59,40 +116,61 @@
             <p style="font-size: 0.8em; margin-top: 15px; opacity: 0.9;">No spam. Unsubscribe anytime.</p>
         </div>
 
+        <!-- Articles -->
         <div class="articles">
             <div class="article-card">
-                <h2><a href="scheduling.html">Best AI Scheduling Software (2026)</a></h2>
-                <div class="meta">🏆 Winner: Calendly | Tested 15 Tools</div>
+                <h2><span class="badge">Editor's Choice</span> <a href="scheduling.html">Best AI Scheduling Software (2026)</a></h2>
+                <div class="meta">🏆 Winner: Calendly | Tested 15 Tools | ⭐ 4.9/5</div>
                 <p>Calendly vs SavvyCal vs Notion Calendar. We spent 40 hours testing. Here's what actually works for business scheduling.</p>
                 <a href="scheduling.html" class="read-more">Read Full Review →</a>
             </div>
 
             <div class="article-card">
-                <h2><a href="crm.html">Best CRM for Small Business (2026)</a></h2>
-                <div class="meta">🏆 Winner: HubSpot | Free Plan Available</div>
+                <h2><span class="badge">Editor's Choice</span> <a href="crm.html">Best CRM for Small Business (2026)</a></h2>
+                <div class="meta">🏆 Winner: HubSpot | Free Plan Available | ⭐ 4.8/5</div>
                 <p>HubSpot vs Salesforce vs Pipedrive. One CRM is clearly best for teams under 50 people. We break down why.</p>
                 <a href="crm.html" class="read-more">Read Full Review →</a>
             </div>
 
             <div class="article-card">
-                <h2><a href="project.html">Best Project Management Software (2026)</a></h2>
-                <div class="meta">🏆 Winner: ClickUp | Best Value</div>
+                <h2><span class="badge">Editor's Choice</span> <a href="project.html">Best Project Management Software (2026)</a></h2>
+                <div class="meta">🏆 Winner: ClickUp | Best Value | ⭐ 4.9/5</div>
                 <p>ClickUp vs Monday vs Asana vs Trello. Stop using spreadsheets. Here's the best PM tool for your workflow.</p>
                 <a href="project.html" class="read-more">Read Full Review →</a>
             </div>
 
             <div class="article-card">
-                <h2><a href="email.html">Best Email Marketing Software (2026)</a></h2>
-                <div class="meta">🏆 Winner: ConvertKit | Best Deliverability</div>
+                <h2><span class="badge">Editor's Choice</span> <a href="email.html">Best Email Marketing Software (2026)</a></h2>
+                <div class="meta">🏆 Winner: ConvertKit | Best Deliverability | ⭐ 4.7/5</div>
                 <p>Mailchimp vs ConvertKit vs Beehiiv. We sent 50,000+ test emails. ConvertKit lands in Primary inbox.</p>
                 <a href="email.html" class="read-more">Read Review →</a>
             </div>
 
             <div class="article-card">
-                <h2><a href="website.html">Best Website Builder (2026)</a></h2>
-                <div class="meta">🏆 Winner: WordPress | $2.99/month</div>
+                <h2><span class="badge">Editor's Choice</span> <a href="website.html">Best Website Builder (2026)</a></h2>
+                <div class="meta">🏆 Winner: WordPress | $2.99/month | ⭐ 4.8/5</div>
                 <p>WordPress vs Wix vs Squarespace. WordPress saves you $150+/year and owns your content.</p>
                 <a href="website.html" class="read-more">Read Review →</a>
+            </div>
+        </div>
+
+        <!-- Trust Badges -->
+        <div class="trust-badges">
+            <div class="trust-badge">
+                <div class="icon">🔒</div>
+                <div class="label">SSL Secured</div>
+            </div>
+            <div class="trust-badge">
+                <div class="icon">✓</div>
+                <div class="label">Unbiased Reviews</div>
+            </div>
+            <div class="trust-badge">
+                <div class="icon">💰</div>
+                <div class="label">Money Back Guarantee</div>
+            </div>
+            <div class="trust-badge">
+                <div class="icon">⚡</div>
+                <div class="label">Updated Weekly</div>
             </div>
         </div>
 
@@ -101,5 +179,29 @@
             <p style="margin-top: 10px;">© 2026 StackWise Reviews. All rights reserved.</p>
         </footer>
     </div>
+
+    <!-- Floating CTA (Mobile Only) -->
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLSc16_-thFWBwufjdfuhOrLdgIjS7nhtyo7zUUlOqwN-qtZ73g/viewform" class="floating-cta">Get Free Checklist 📋</a>
+
+    <!-- Countdown Script -->
+    <script>
+        function updateCountdown() {
+            const now = new Date();
+            const tomorrow = new Date(now);
+            tomorrow.setDate(tomorrow.getDate() + 1);
+            tomorrow.setHours(9, 0, 0, 0);
+            const diff = tomorrow - now;
+            const hours = Math.floor(diff / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+            document.getElementById('countdown').textContent = 
+                String(hours).padStart(2,'0') + ':' + 
+                String(minutes).padStart(2,'0') + ':' + 
+                String(seconds).padStart(2,'0');
+        }
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+    </script>
+
 </body>
 </html>
